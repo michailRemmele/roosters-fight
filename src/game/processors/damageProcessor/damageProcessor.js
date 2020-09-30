@@ -1,4 +1,4 @@
-import { Processor } from 'flyer-engine';
+import { Processor } from '@flyer-engine/core';
 
 const DAMAGE_MSG = 'DAMAGE';
 const KILL_MSG = 'KILL';

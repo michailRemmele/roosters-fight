@@ -1,4 +1,4 @@
-import { Processor } from 'flyer-engine';
+import { Processor } from '@flyer-engine/core';
 
 const PLAYERS_ENEMIES_NAME = 'playersEnemies';
 

@@ -1,4 +1,4 @@
-import { Processor } from 'flyer-engine';
+import { Processor } from '@flyer-engine/core';
 
 import effectApplicators from './effectApplicators';
 import effects from './effects';

@@ -1,4 +1,4 @@
-import { Processor } from 'flyer-engine';
+import { Processor } from '@flyer-engine/core';
 
 const COLLISION_ENTER_MSG = 'COLLISION_ENTER';
 const ADD_EFFECT_MSG = 'ADD_EFFECT';

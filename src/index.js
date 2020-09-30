@@ -2,7 +2,7 @@ import {
   Engine,
   contribProcessorsPlugins,
   contribComponents,
-} from './flyer-engine';
+} from '@flyer-engine/core';
 
 import mainConfig from 'resources/configurations/mainConfig.json';
 import gameProcessorsPlugins from 'game/processorsPlugins';

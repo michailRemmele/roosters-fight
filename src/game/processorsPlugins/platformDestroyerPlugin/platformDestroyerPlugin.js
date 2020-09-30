@@ -1,4 +1,4 @@
-import { ProcessorPlugin } from 'flyer-engine';
+import { ProcessorPlugin } from '@flyer-engine/core';
 
 import PlatformDestroyer from 'game/processors/platformDestroyer/platformDestroyer';
 

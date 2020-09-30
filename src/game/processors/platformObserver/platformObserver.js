@@ -1,4 +1,4 @@
-import { Processor } from 'flyer-engine';
+import { Processor } from '@flyer-engine/core';
 
 const COLLIDER_COMPONENT_NAME = 'colliderContainer';
 const TRANSFORM_COMPONENT_NAME = 'transform';
