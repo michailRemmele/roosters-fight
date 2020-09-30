@@ -1,4 +1,4 @@
-import { ProcessorPlugin } from 'flyer-engine';
+import { ProcessorPlugin } from '@flyer-engine/core';
 
 import FallProcessor from 'game/processors/fallProcessor/fallProcessor';
 

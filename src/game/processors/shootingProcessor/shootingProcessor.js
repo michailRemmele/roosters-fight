@@ -1,4 +1,4 @@
-import { Processor, VectorOps, MathOps } from 'flyer-engine';
+import { Processor, VectorOps, MathOps } from '@flyer-engine/core';
 
 const DAMAGE_MSG = 'DAMAGE';
 const COLLISION_ENTER_MSG = 'COLLISION_ENTER';

@@ -1,4 +1,4 @@
-import { Component } from 'flyer-engine';
+import { Component } from '@flyer-engine/core';
 
 class HitBox extends Component {
   clone() {

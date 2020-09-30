@@ -1,4 +1,4 @@
-import { Processor } from 'flyer-engine';
+import { Processor } from '@flyer-engine/core';
 
 const CONTROL_COMPONENT_NAME = 'keyboardControl';
 const KILL_MSG = 'KILL';

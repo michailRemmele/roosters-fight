@@ -1,4 +1,4 @@
-import { ProcessorPlugin } from 'flyer-engine';
+import { ProcessorPlugin } from '@flyer-engine/core';
 
 import EffectsProcessor from 'game/processors/effectsProcessor/effectsProcessor';
 

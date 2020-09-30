@@ -1,4 +1,4 @@
-import { Processor } from 'flyer-engine';
+import { Processor } from '@flyer-engine/core';
 
 const PLATFORM_CHANGE_MSG = 'PLATFORM_CHANGE';
 const ADD_EFFECT_MSG = 'ADD_EFFECT';

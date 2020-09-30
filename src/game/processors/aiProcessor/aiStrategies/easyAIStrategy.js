@@ -1,4 +1,4 @@
-import { MathOps } from 'flyer-engine';
+import { MathOps } from '@flyer-engine/core';
 
 import AIStrategy from './aiStrategy';
 
