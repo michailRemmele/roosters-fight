@@ -43,17 +43,24 @@
     {
       "name": "animatable",
       "config": {
-        "defaultState": "idle-100",
+        "initialState": "idle-100",
         "states": [
           {
             "name": "idle-100",
+            "type": "individual",
             "speed": 1,
-            "frames": [
-              {
-                "index": 0
-              }
-            ],
-            "looped": true,
+            "timeline": {
+              "frames": [
+                {
+                  "index": 0,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": false
+                }
+              ],
+              "looped": false
+            },
             "transitions": [
               {
                 "state": "idle-80",
@@ -78,13 +85,20 @@
           },
           {
             "name": "idle-80",
+            "type": "individual",
             "speed": 1,
-            "frames": [
-              {
-                "index": 1
-              }
-            ],
-            "looped": true,
+            "timeline": {
+              "frames": [
+                {
+                  "index": 1,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": false
+                }
+              ],
+              "looped": false
+            },
             "transitions": [
               {
                 "state": "idle-60",
@@ -109,13 +123,20 @@
           },
           {
             "name": "idle-60",
+            "type": "individual",
             "speed": 1,
-            "frames": [
-              {
-                "index": 2
-              }
-            ],
-            "looped": true,
+            "timeline": {
+              "frames": [
+                {
+                  "index": 2,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": false
+                }
+              ],
+              "looped": false
+            },
             "transitions": [
               {
                 "state": "idle-40",
@@ -140,13 +161,20 @@
           },
           {
             "name": "idle-40",
+            "type": "individual",
             "speed": 1,
-            "frames": [
-              {
-                "index": 3
-              }
-            ],
-            "looped": true,
+            "timeline": {
+              "frames": [
+                {
+                  "index": 3,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": false
+                }
+              ],
+              "looped": false
+            },
             "transitions": [
               {
                 "state": "idle-20",
@@ -171,13 +199,20 @@
           },
           {
             "name": "idle-20",
+            "type": "individual",
             "speed": 1,
-            "frames": [
-              {
-                "index": 4
-              }
-            ],
-            "looped": true,
+            "timeline": {
+              "frames": [
+                {
+                  "index": 4,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": false
+                }
+              ],
+              "looped": false
+            },
             "transitions": [
               {
                 "state": "void",
@@ -194,13 +229,20 @@
           },
           {
             "name": "void",
+            "type": "individual",
             "speed": 1,
-            "frames": [
-              {
-                "disabled": true
-              }
-            ],
-            "looped": true,
+            "timeline": {
+              "frames": [
+                {
+                  "index": 0,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": true
+                }
+              ],
+              "looped": false
+            },
             "transitions": []
           }
         ]

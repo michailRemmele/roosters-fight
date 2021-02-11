@@ -64,7 +64,7 @@
       "name": "rigidBody",
       "config": {
         "type": "dynamic",
-        "mass": 3,
+        "mass": 1.75,
         "useGravity": false,
         "isPermeable": false,
         "ghost": false,
@@ -92,44 +92,11 @@
     {
       "name": "animatable",
       "config": {
-        "defaultState": "idle",
+        "initialState": "idle",
         "states": [
           {
             "name": "idle",
             "speed": 0.75,
-            "frames": [
-              {
-                "index": 0,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 1,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 2,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 3,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 4,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 5,
-                "flipY": false,
-                "rotation": 0
-              }
-            ],
-            "looped": true,
             "transitions": [
               {
                 "state": "death",
@@ -154,7 +121,7 @@
                 ]
               },
               {
-                "state": "runRight",
+                "state": "run",
                 "conditions": [
                   {
                     "type": "comparator",
@@ -163,7 +130,7 @@
                         "type": "componentValue",
                         "value": "movement.vector.x"
                       },
-                      "operation": "greater",
+                      "operation": "notEquals",
                       "arg2": {
                         "type": "number",
                         "value": 0
@@ -173,26 +140,7 @@
                 ]
               },
               {
-                "state": "runLeft",
-                "conditions": [
-                  {
-                    "type": "comparator",
-                    "props": {
-                      "arg1": {
-                        "type": "componentValue",
-                        "value": "movement.vector.x"
-                      },
-                      "operation": "less",
-                      "arg2": {
-                        "type": "number",
-                        "value": 0
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "runVertical",
+                "state": "run",
                 "conditions": [
                   {
                     "type": "comparator",
@@ -210,38 +158,123 @@
                   }
                 ]
               }
-            ]
-          },
-          {
-            "name": "runRight",
-            "speed": 1,
-            "frames": [
+            ],
+            "type": "group",
+            "substates": [
               {
-                "index": 6,
-                "flipX": false,
-                "flipY": false,
-                "rotation": 0
+                "name": "idleRight",
+                "timeline": {
+                  "frames": [
+                    {
+                      "index": 0,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 1,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 2,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 3,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 4,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 5,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    }
+                  ],
+                  "looped": true
+                },
+                "x": 1,
+                "y": 0
               },
               {
-                "index": 7,
-                "flipX": false,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 8,
-                "flipX": false,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 9,
-                "flipX": false,
-                "flipY": false,
-                "rotation": 0
+                "name": "idleLeft",
+                "timeline": {
+                  "frames": [
+                    {
+                      "index": 0,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 1,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 2,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 3,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 4,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 5,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    }
+                  ],
+                  "looped": true
+                },
+                "x": -1,
+                "y": 0
               }
             ],
-            "looped": true,
+            "pickMode": "2D",
+            "pickProps": {
+              "x": "movement.vector.x",
+              "y": "movement.vector.y"
+            }
+          },
+          {
+            "name": "run",
+            "speed": 1,
             "transitions": [
               {
                 "state": "death",
@@ -270,213 +303,7 @@
                         "value": 0
                       }
                     }
-                  }
-                ]
-              },
-              {
-                "state": "runLeft",
-                "conditions": [
-                  {
-                    "type": "comparator",
-                    "props": {
-                      "arg1": {
-                        "type": "componentValue",
-                        "value": "movement.vector.x"
-                      },
-                      "operation": "less",
-                      "arg2": {
-                        "type": "number",
-                        "value": 0
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "attack",
-                "conditions": [
-                  {
-                    "type": "message",
-                    "props": {
-                      "message": "SHOT"
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "runLeft",
-            "speed": 1,
-            "frames": [
-              {
-                "index": 6,
-                "flipX": true,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 7,
-                "flipX": true,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 8,
-                "flipX": true,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 9,
-                "flipX": true,
-                "flipY": false,
-                "rotation": 0
-              }
-            ],
-            "looped": true,
-            "transitions": [
-              {
-                "state": "death",
-                "conditions": [
-                  {
-                    "type": "message",
-                    "props": {
-                      "message": "KILL"
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "idle",
-                "conditions": [
-                  {
-                    "type": "comparator",
-                    "props": {
-                      "arg1": {
-                        "type": "componentValue",
-                        "value": "movement.vector.x"
-                      },
-                      "operation": "equals",
-                      "arg2": {
-                        "type": "number",
-                        "value": 0
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "runRight",
-                "conditions": [
-                  {
-                    "type": "comparator",
-                    "props": {
-                      "arg1": {
-                        "type": "componentValue",
-                        "value": "movement.vector.x"
-                      },
-                      "operation": "greater",
-                      "arg2": {
-                        "type": "number",
-                        "value": 0
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "attack",
-                "conditions": [
-                  {
-                    "type": "message",
-                    "props": {
-                      "message": "SHOT"
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name": "runVertical",
-            "speed": 1,
-            "frames": [
-              {
-                "index": 6,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 7,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 8,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 9,
-                "flipY": false,
-                "rotation": 0
-              }
-            ],
-            "looped": true,
-            "transitions": [
-              {
-                "state": "death",
-                "conditions": [
-                  {
-                    "type": "message",
-                    "props": {
-                      "message": "KILL"
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "runRight",
-                "conditions": [
-                  {
-                    "type": "comparator",
-                    "props": {
-                      "arg1": {
-                        "type": "componentValue",
-                        "value": "movement.vector.x"
-                      },
-                      "operation": "greater",
-                      "arg2": {
-                        "type": "number",
-                        "value": 0
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "runLeft",
-                "conditions": [
-                  {
-                    "type": "comparator",
-                    "props": {
-                      "arg1": {
-                        "type": "componentValue",
-                        "value": "movement.vector.x"
-                      },
-                      "operation": "less",
-                      "arg2": {
-                        "type": "number",
-                        "value": 0
-                      }
-                    }
-                  }
-                ]
-              },
-              {
-                "state": "idle",
-                "conditions": [
+                  },
                   {
                     "type": "comparator",
                     "props": {
@@ -492,50 +319,96 @@
                     }
                   }
                 ]
+              }
+            ],
+            "type": "group",
+            "substates": [
+              {
+                "name": "runRight",
+                "timeline": {
+                  "frames": [
+                    {
+                      "index": 6,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 7,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 8,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 9,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    }
+                  ],
+                  "looped": true
+                },
+                "x": 1,
+                "y": 0
               },
               {
-                "state": "attack",
-                "conditions": [
-                  {
-                    "type": "message",
-                    "props": {
-                      "message": "SHOT"
+                "name": "runLeft",
+                "timeline": {
+                  "frames": [
+                    {
+                      "index": 6,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 7,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 8,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 9,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
                     }
-                  }
-                ]
+                  ],
+                  "looped": true
+                },
+                "x": -1,
+                "y": 0
               }
-            ]
+            ],
+            "pickMode": "2D",
+            "pickProps": {
+              "x": "movement.vector.x",
+              "y": "movement.vector.y"
+            }
           },
           {
             "name": "attack",
             "speed": 1.5,
-            "frames": [
-              {
-                "index": 10,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 11,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 12,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 13,
-                "flipY": false,
-                "rotation": 0
-              },
-              {
-                "index": 14,
-                "flipY": false,
-                "rotation": 0
-              }
-            ],
             "transitions": [
               {
                 "state": "death",
@@ -546,33 +419,174 @@
                       "message": "KILL"
                     }
                   }
+                ],
+                "time": "1"
+              },
+              {
+                "state": "run",
+                "conditions": [
+                  {
+                    "type": "comparator",
+                    "props": {
+                      "arg1": {
+                        "type": "componentValue",
+                        "value": "movement.vector.x"
+                      },
+                      "operation": "notEquals",
+                      "arg2": {
+                        "type": "number",
+                        "value": 0
+                      }
+                    }
+                  }
                 ]
+              },
+              {
+                "state": "run",
+                "conditions": [
+                  {
+                    "type": "comparator",
+                    "props": {
+                      "arg1": {
+                        "type": "componentValue",
+                        "value": "movement.vector.y"
+                      },
+                      "operation": "notEquals",
+                      "arg2": {
+                        "type": "number",
+                        "value": 0
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "state": "idle",
+                "conditions": []
               }
-            ]
+            ],
+            "type": "group",
+            "substates": [
+              {
+                "name": "attackRight",
+                "timeline": {
+                  "frames": [
+                    {
+                      "index": 10,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 11,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 12,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 13,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 14,
+                      "rotation": 0,
+                      "flipX": false,
+                      "flipY": false,
+                      "disabled": false
+                    }
+                  ],
+                  "looped": false
+                },
+                "x": 1,
+                "y": 0
+              },
+              {
+                "name": "attackLeft",
+                "timeline": {
+                  "frames": [
+                    {
+                      "index": 10,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 11,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 12,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 13,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    },
+                    {
+                      "index": 14,
+                      "rotation": 0,
+                      "flipX": true,
+                      "flipY": false,
+                      "disabled": false
+                    }
+                  ],
+                  "looped": false
+                },
+                "x": -1,
+                "y": 0
+              }
+            ],
+            "pickMode": "2D",
+            "pickProps": {
+              "x": "movement.vector.x",
+              "y": "movement.vector.y"
+            }
           },
           {
             "name": "death",
+            "type": "individual",
             "speed": 0.5,
-            "frames": [
-              {
-                "index": 15,
-                "flipY": false,
-                "rotation": 0
-              }
-            ],
-            "looped": false,
-            "fallbackState": "void",
-            "transitions": []
-          },
-          {
-            "name": "void",
-            "speed": 1,
-            "frames": [
-              {
-                "disabled": true
-              }
-            ],
-            "looped": true,
+            "timeline": {
+              "frames": [
+                {
+                  "index": 15,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": false
+                },
+                {
+                  "index": 15,
+                  "rotation": 0,
+                  "flipX": false,
+                  "flipY": false,
+                  "disabled": true
+                }
+              ],
+              "looped": false
+            },
             "transitions": []
           }
         ]
