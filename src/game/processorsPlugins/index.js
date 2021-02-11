@@ -4,6 +4,7 @@ import EffectsProcessorPlugin from './effectsProcessorPlugin/effectsProcessorPlu
 import EnemiesDetectorPlugin from './enemiesDetectorPlugin/enemiesDetectorPlugin';
 import FallProcessorPlugin from './fallProcessorPlugin/fallProcessorPlugin';
 import GameOverProcessorPlugin from './gameOverProcessorPlugin/gameOverProcessorPlugin';
+import MovementProcessorPlugin from './movementProcessorPlugin/movementProcessorPlugin';
 import PlatformDestroyerPlugin from './platformDestroyerPlugin/platformDestroyerPlugin';
 import PlatformObserverPlugin from './platformObserverPlugin/platformObserverPlugin';
 import PlatformSizeMeterPlugin from './platformSizeMeterPlugin/platformSizeMeterPlugin';
@@ -17,6 +18,7 @@ export default {
   enemiesDetector: EnemiesDetectorPlugin,
   fallProcessor: FallProcessorPlugin,
   gameOverProcessor: GameOverProcessorPlugin,
+  movementProcessor: MovementProcessorPlugin,
   platformDestroyer: PlatformDestroyerPlugin,
   platformObserver: PlatformObserverPlugin,
   platformSizeMeter: PlatformSizeMeterPlugin,
