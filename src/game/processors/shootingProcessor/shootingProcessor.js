@@ -3,20 +3,13 @@ import { Processor, VectorOps, MathOps } from '@flyer-engine/core';
 const DAMAGE_MSG = 'DAMAGE';
 const COLLISION_ENTER_MSG = 'COLLISION_ENTER';
 const SHOT_MSG = 'SHOT';
-const ADD_FORCE_MSG = 'ADD_FORCE';
+const ADD_IMPULSE_MSG = 'ADD_IMPULSE';
 const ADD_EFFECT_MSG = 'ADD_EFFECT';
 
-const SHOT_POWER = 'shotPower';
-const PUSH_POWER = 'pushPower';
-
 const TRANSFORM_COMPONENT_NAME = 'transform';
-const RIGID_BODY_COMPONENT_NAME = 'rigidBody';
 const WEAPON_COMPONENT_NAME = 'weapon';
 const HEALTH_COMPONENT_NAME = 'health';
 const HITBOX_COMPONENT_NAME = 'hitBox';
-
-const ACCELERATION_DURATION = 10;
-const ACCELERATION_DURATION_IN_SEC = ACCELERATION_DURATION / 1000;
 
 const LIFETIME_EFFECT = {
   name: 'lifetime',
@@ -45,10 +38,8 @@ class ShootingProcessor extends Processor {
 
   _pushTarget(target, directionVector, messageBus) {
     messageBus.send({
-      type: ADD_FORCE_MSG,
-      name: PUSH_POWER,
+      type: ADD_IMPULSE_MSG,
       value: directionVector,
-      duration: ACCELERATION_DURATION,
       gameObject: target,
       id: target.getId(),
     });
@@ -128,7 +119,6 @@ class ShootingProcessor extends Processor {
 
     const bullet = this._gameObjectSpawner.spawn(weapon.bullet);
     const bulletTransform = bullet.getComponent(TRANSFORM_COMPONENT_NAME);
-    const bulletRigidBody = bullet.getComponent(RIGID_BODY_COMPONENT_NAME);
     const bulletHealth = bullet.getComponent(HEALTH_COMPONENT_NAME);
 
     bulletTransform.offsetX = offsetX;
@@ -140,16 +130,13 @@ class ShootingProcessor extends Processor {
 
     const directionVector = VectorOps.getVectorByAngle(angle);
 
-    const forceValue = weapon.speed * bulletRigidBody.mass / ACCELERATION_DURATION_IN_SEC;
-    directionVector.multiplyNumber(forceValue);
+    directionVector.multiplyNumber(weapon.speed);
 
-    const flightTime = (1000 * weapon.range / weapon.speed) + (ACCELERATION_DURATION / 2);
+    const flightTime = 1000 * weapon.range / weapon.speed;
 
     messageBus.send({
-      type: ADD_FORCE_MSG,
-      name: SHOT_POWER,
+      type: ADD_IMPULSE_MSG,
       value: directionVector,
-      duration: ACCELERATION_DURATION,
       gameObject: bullet,
       id: bullet.getId(),
     });
