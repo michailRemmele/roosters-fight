@@ -1,10 +1,10 @@
-import AI from './ai/ai';
-import Weapon from './weapon/weapon';
-import Health from './health/health';
-import HitBox from './hitBox/hitBox';
-import Movement from './movement/movement';
+import { AI } from './ai';
+import { Weapon } from './weapon';
+import { Health } from './health';
+import { HitBox } from './hit-box';
+import { Movement } from './movement';
 
-export default {
+export const components = {
   ai: AI,
   weapon: Weapon,
   health: Health,

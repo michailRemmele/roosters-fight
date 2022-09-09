@@ -18,6 +18,7 @@ class MainMenu extends React.Component {
     this.props.pushMessage({
       type: LOAD_SCENE_MSG,
       name: GAME_SCENE_NAME,
+      clean: true,
     });
   }
 
