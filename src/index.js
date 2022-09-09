@@ -1,26 +1,26 @@
 import {
   Engine,
-  contribProcessorsPlugins,
+  contribSystems,
   contribComponents,
-} from '@flyer-engine/core';
+} from 'remiz';
 
-import mainConfig from 'resources/configurations/mainConfig.json';
-import gameProcessorsPlugins from 'game/processorsPlugins';
-import gameComponents from 'game/components';
-import pluginHelpers from 'pluginHelpers';
+import config from 'resources/config.json';
+import { systems as gameSystems } from './game/systems';
+import { components as gameComponents } from './game/components';
+import helpers from './helpers';
 
 const options = {
-  mainConfig: mainConfig,
-  processorsPlugins: {
-    ...contribProcessorsPlugins,
-    ...gameProcessorsPlugins,
+  config,
+  systems: {
+    ...contribSystems,
+    ...gameSystems,
   },
   components: {
     ...contribComponents,
     ...gameComponents,
   },
-  pluginHelpers: {
-    ...pluginHelpers,
+  helpers: {
+    ...helpers,
   },
 };
 

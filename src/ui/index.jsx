@@ -13,7 +13,7 @@ import BoxesAndCircles from './elements/pages/boxesAndCircles/BoxesAndCircles';
 
 export function onInit(options) {
   const {
-    sceneName,
+    sceneContext,
     messageBusObserver,
     storeObserver,
     pushMessage,
@@ -30,7 +30,7 @@ export function onInit(options) {
       gameObjects={gameObjects}
     >
       <MemoryRouter>
-        <SceneSwitcher sceneName={sceneName}>
+        <SceneSwitcher sceneName={sceneContext.name}>
           <Switch>
             <Route path='/mainMenu'>
               <MainMenu/>
