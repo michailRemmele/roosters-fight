@@ -1,0 +1,3800 @@
+{
+  "scenes": [
+    {
+      "name": "mainMenu",
+      "systems": [
+        {
+          "name": "uiBridge",
+          "options": {}
+        }
+      ]
+    },
+    {
+      "name": "game",
+      "level": "space",
+      "systems": [
+        {
+          "name": "keyboardInputSystem",
+          "options": {}
+        },
+        {
+          "name": "mouseInputSystem",
+          "options": {}
+        },
+        {
+          "name": "mouseInputCoordinatesProjector",
+          "options": {}
+        },
+        {
+          "name": "keyboardControlSystem",
+          "options": {}
+        },
+        {
+          "name": "mouseControlSystem",
+          "options": {}
+        },
+        {
+          "name": "platformObserver",
+          "options": {}
+        },
+        {
+          "name": "platformSizeMeter",
+          "options": {}
+        },
+        {
+          "name": "platformDestroyer",
+          "options": {}
+        },
+        {
+          "name": "aiSystem",
+          "options": {}
+        },
+        {
+          "name": "scriptSystem",
+          "options": {}
+        },
+        {
+          "name": "movementSystem",
+          "options": {}
+        },
+        {
+          "name": "shootingSystem",
+          "options": {}
+        },
+        {
+          "name": "fallSystem",
+          "options": {}
+        },
+        {
+          "name": "effectsSystem",
+          "options": {}
+        },
+        {
+          "name": "damageSystem",
+          "options": {}
+        },
+        {
+          "name": "reaper",
+          "options": {
+            "allowedComponents": [
+              "transform",
+              "animatable",
+              "renderable",
+              "camera"
+            ],
+            "lifetime": 5000
+          }
+        },
+        {
+          "name": "cameraSystem",
+          "options": {
+            "windowNodeId": "root",
+            "initialCamera": "1.2"
+          }
+        },
+        {
+          "name": "enemiesDetector",
+          "options": {}
+        },
+        {
+          "name": "gameOverSystem",
+          "options": {}
+        },
+        {
+          "name": "physicsSystem",
+          "options": {
+            "gravitationalAcceleration": 450
+          }
+        },
+        {
+          "name": "jammer",
+          "options": {
+            "messages": [
+              "COLLISION_ENTER",
+              "COLLISION_STAY",
+              "COLLISION_LEAVE"
+            ]
+          }
+        },
+        {
+          "name": "collisionDetectionSystem",
+          "options": {}
+        },
+        {
+          "name": "collisionBroadcastSystem",
+          "options": {}
+        },
+        {
+          "name": "collisionSolver",
+          "options": {}
+        },
+        {
+          "name": "constraintSolver",
+          "options": {}
+        },
+        {
+          "name": "animator",
+          "options": {}
+        },
+        {
+          "name": "threeJSRenderer",
+          "options": {
+            "windowNodeId": "root",
+            "backgroundColor": "#555",
+            "sortingLayers": [
+              "default",
+              "background",
+              "space",
+              "terrain",
+              "decorations",
+              "units"
+            ],
+            "scaleSensitivity": 0.5
+          }
+        },
+        {
+          "name": "uiBridge",
+          "options": {
+            "filterComponents": [
+              "keyboardControl",
+              "mouseControl"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "levels": [
+    {
+      "name": "space",
+      "gameObjects": [
+        {
+          "id": "0",
+          "name": "spaceBackground",
+          "fromTemplate": true,
+          "templateName": "space",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "1",
+          "name": "rooster",
+          "fromTemplate": true,
+          "templateName": "rooster",
+          "children": [
+            {
+              "id": "1.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            },
+            {
+              "id": "1.2",
+              "name": "mainCamera",
+              "fromTemplate": false,
+              "templateName": "",
+              "children": [],
+              "components": [
+                {
+                  "name": "transform",
+                  "config": {
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "offsetZ": 0,
+                    "rotation": 0
+                  }
+                },
+                {
+                  "name": "camera",
+                  "config": {
+                    "zoom": 2
+                  }
+                }
+              ]
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": -174,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            },
+            {
+              "name": "keyboardControl",
+              "config": {
+                "inputEventBindings": {
+                  "W_PRESSED": {
+                    "messageType": "MOVEMENT",
+                    "attrs": {
+                      "directionAngle": 270
+                    }
+                  },
+                  "A_PRESSED": {
+                    "messageType": "MOVEMENT",
+                    "attrs": {
+                      "directionAngle": 180
+                    }
+                  },
+                  "S_PRESSED": {
+                    "messageType": "MOVEMENT",
+                    "attrs": {
+                      "directionAngle": 90
+                    }
+                  },
+                  "D_PRESSED": {
+                    "messageType": "MOVEMENT",
+                    "attrs": {
+                      "directionAngle": 0
+                    }
+                  },
+                  "T_PRESSED": {
+                    "messageType": "LOAD_SCENE",
+                    "attrs": {
+                      "name": "platformer"
+                    }
+                  },
+                  "M_PRESSED": {
+                    "messageType": "LOAD_SCENE",
+                    "attrs": {
+                      "name": "mainMenu"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "mouseControl",
+              "config": {
+                "inputEventBindings": {
+                  "MOUSE_LEFT_BUTTON_PRESS": {
+                    "messageType": "SHOT",
+                    "attrs": {}
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "roosterEnemy",
+          "fromTemplate": true,
+          "templateName": "roosterEnemy",
+          "children": [
+            {
+              "id": "2.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": -78,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "name": "roosterEnemy",
+          "fromTemplate": true,
+          "templateName": "roosterEnemy",
+          "children": [
+            {
+              "id": "3.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": 18,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "4",
+          "name": "roosterEnemy",
+          "fromTemplate": true,
+          "templateName": "roosterEnemy",
+          "children": [
+            {
+              "id": "4.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": 114,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "5",
+          "name": "roosterEnemy",
+          "fromTemplate": true,
+          "templateName": "roosterEnemy",
+          "children": [
+            {
+              "id": "5.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": -174,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "6",
+          "name": "roosterEnemy",
+          "fromTemplate": true,
+          "templateName": "roosterEnemy",
+          "children": [
+            {
+              "id": "6.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": -78,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "7",
+          "name": "roosterEnemy",
+          "fromTemplate": true,
+          "templateName": "roosterEnemy",
+          "children": [
+            {
+              "id": "7.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": 18,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "8",
+          "name": "roosterEnemy",
+          "fromTemplate": true,
+          "templateName": "roosterEnemy",
+          "children": [
+            {
+              "id": "8.1",
+              "name": "roosterHitBox",
+              "fromTemplate": true,
+              "templateName": "roosterHitBox",
+              "children": [],
+              "components": []
+            }
+          ],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": 114,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "100",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "101",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "102",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "103",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "104",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "105",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "106",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "107",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "108",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "109",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "110",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "111",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "112",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "113",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "114",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "115",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "116",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "117",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "118",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "119",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "120",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "121",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "122",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "123",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "124",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "125",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "126",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "127",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "128",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "129",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "130",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "131",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "132",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "133",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "134",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "135",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "136",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "137",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "138",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "139",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "140",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "141",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "142",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "143",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "144",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "145",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 16,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "146",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 48,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "147",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 80,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "148",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 112,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "149",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 144,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "150",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "151",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "152",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "153",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "154",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": -144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "155",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "156",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "157",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "158",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "159",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": -112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "160",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "161",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "162",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "163",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "164",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": -80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "165",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "166",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "167",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "168",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "169",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": -48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "170",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "171",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "172",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "173",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "174",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": -16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "175",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "176",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "177",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "178",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "179",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": 16,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "180",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "181",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "182",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "183",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "184",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": 48,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "185",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "186",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "187",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "188",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "189",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": 80,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "190",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "191",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "192",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "193",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "194",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": 112,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "195",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -16,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "196",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -48,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "197",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -80,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "198",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -112,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "199",
+          "name": "floor",
+          "fromTemplate": true,
+          "templateName": "floor",
+          "children": [],
+          "components": [
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": -144,
+                "offsetY": 144,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "templates": [
+    {
+      "name": "floor",
+      "type": "terrain",
+      "children": [],
+      "components": [
+        {
+          "name": "transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0
+          }
+        },
+        {
+          "name": "health",
+          "config": {
+            "points": 5
+          }
+        },
+        {
+          "name": "rigidBody",
+          "config": {
+            "type": "static",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": true,
+            "ghost": false,
+            "drag": 0
+          }
+        },
+        {
+          "name": "colliderContainer",
+          "config": {
+            "type": "boxCollider",
+            "collider": {
+              "sizeX": 31,
+              "sizeY": 31,
+              "centerX": 0,
+              "centerY": -18
+            }
+          }
+        },
+        {
+          "name": "animatable",
+          "config": {
+            "initialState": "idle-100",
+            "states": [
+              {
+                "name": "idle-100",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 0
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "state": "idle-80",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.health.points"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 4
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ]
+              },
+              {
+                "name": "idle-80",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 1
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "state": "idle-60",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.health.points"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 3
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ]
+              },
+              {
+                "name": "idle-60",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 2
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "state": "idle-40",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.health.points"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 2
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ]
+              },
+              {
+                "name": "idle-40",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 3
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "state": "idle-20",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.health.points"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 1
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ]
+              },
+              {
+                "name": "idle-20",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 4
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "state": "void",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ]
+              },
+              {
+                "name": "void",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.disabled": true
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "renderable",
+          "config": {
+            "type": "sprite",
+            "src": "resources/graphics/terrain/floor.png",
+            "width": 32,
+            "height": 64,
+            "slice": 5,
+            "rotation": 0,
+            "sortCenter": [ 0, 0 ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "terrain",
+            "fit": "stretch",
+            "material": {
+              "type": "basic"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "rooster",
+      "type": "unit",
+      "children": [
+        {
+          "name": "roosterHitBox",
+          "children": [],
+          "components": [
+            {
+              "name": "hitBox",
+              "config": {}
+            },
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            },
+            {
+              "name": "colliderContainer",
+              "config": {
+                "type": "boxCollider",
+                "collider": {
+                  "sizeX": 33,
+                  "sizeY": 40,
+                  "centerX": 0,
+                  "centerY": 0
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "components": [
+        {
+          "name": "transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0
+          }
+        },
+        {
+          "name": "health",
+          "config": {
+            "points": 100
+          }
+        },
+        {
+          "name": "weapon",
+          "config": {
+            "name": "blaster",
+            "bullet": "blasterBullet",
+            "damage": 5,
+            "fetterDuration": 300,
+            "speed": 300,
+            "range": 256,
+            "cooldown": 2000
+          }
+        },
+        {
+          "name": "rigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1.75,
+            "useGravity": false,
+            "isPermeable": false,
+            "ghost": false,
+            "drag": 0.5
+          }
+        },
+        {
+          "name": "colliderContainer",
+          "config": {
+            "type": "boxCollider",
+            "collider": {
+              "sizeX": 21,
+              "sizeY": 7,
+              "centerX": 0,
+              "centerY": 17
+            }
+          }
+        },
+        {
+          "name": "movement",
+          "config": {
+            "speed": 100
+          }
+        },
+        {
+          "name": "animatable",
+          "config": {
+            "initialState": "idle",
+            "states": [
+              {
+                "name": "idle",
+                "speed": 0.75,
+                "transitions": [
+                  {
+                    "state": "death",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "attack",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "SHOT"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.x"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.y"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ],
+                "type": "group",
+                "substates": [
+                  {
+                    "name": "idleRight",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 0,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 1,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 2,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 3,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 4,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 5,
+                          "components.renderable.flipX": false
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": 1,
+                    "y": 0
+                  },
+                  {
+                    "name": "idleLeft",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 0,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 1,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 2,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 3,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 4,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 5,
+                          "components.renderable.flipX": true
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": -1,
+                    "y": 0
+                  }
+                ],
+                "pickMode": "2D",
+                "pickProps": {
+                  "x": "components.movement.vector.x",
+                  "y": "components.movement.vector.y"
+                }
+              },
+              {
+                "name": "run",
+                "speed": 1,
+                "transitions": [
+                  {
+                    "state": "death",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "idle",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.x"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      },
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.y"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ],
+                "type": "group",
+                "substates": [
+                  {
+                    "name": "runRight",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 6,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 7,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 8,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 9,
+                          "components.renderable.flipX": false
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": 1,
+                    "y": 0
+                  },
+                  {
+                    "name": "runLeft",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 6,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 7,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 8,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 9,
+                          "components.renderable.flipX": true
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": -1,
+                    "y": 0
+                  }
+                ],
+                "pickMode": "2D",
+                "pickProps": {
+                  "x": "components.movement.vector.x",
+                  "y": "components.movement.vector.y"
+                }
+              },
+              {
+                "name": "attack",
+                "speed": 1.5,
+                "transitions": [
+                  {
+                    "state": "death",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.x"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.y"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "idle",
+                    "conditions": [],
+                    "time": 1
+                  }
+                ],
+                "type": "group",
+                "substates": [
+                  {
+                    "name": "attackRight",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 10,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 11,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 12,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 13,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 14,
+                          "components.renderable.flipX": false
+                        }
+                      ],
+                      "looped": false
+                    },
+                    "x": 1,
+                    "y": 0
+                  },
+                  {
+                    "name": "attackLeft",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 10,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 11,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 12,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 13,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 14,
+                          "components.renderable.flipX": true
+                        }
+                      ],
+                      "looped": false
+                    },
+                    "x": -1,
+                    "y": 0
+                  }
+                ],
+                "pickMode": "2D",
+                "pickProps": {
+                  "x": "components.movement.vector.x",
+                  "y": "components.movement.vector.y"
+                }
+              },
+              {
+                "name": "death",
+                "type": "individual",
+                "speed": 0.5,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 15,
+                      "components.renderable.flipX": false
+                    },
+                    {
+                      "components.renderable.disabled": true
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "renderable",
+          "config": {
+            "type": "sprite",
+            "src": "resources/graphics/units/rooster.png",
+            "width": 45,
+            "height": 50,
+            "slice": 16,
+            "rotation": 0,
+            "sortCenter": [ 0, 0 ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "units",
+            "fit": "stretch",
+            "material": {
+              "type": "basic"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "roosterEnemy",
+      "type": "unit",
+      "children": [
+        {
+          "name": "roosterHitBox",
+          "children": [],
+          "components": [
+            {
+              "name": "hitBox",
+              "config": {}
+            },
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            },
+            {
+              "name": "colliderContainer",
+              "config": {
+                "type": "boxCollider",
+                "collider": {
+                  "sizeX": 33,
+                  "sizeY": 40,
+                  "centerX": 0,
+                  "centerY": 0
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "components": [
+        {
+          "name": "transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0
+          }
+        },
+        {
+          "name": "ai",
+          "config": {
+            "strategy": "easy"
+          }
+        },
+        {
+          "name": "health",
+          "config": {
+            "points": 100
+          }
+        },
+        {
+          "name": "weapon",
+          "config": {
+            "name": "blaster",
+            "bullet": "blasterBullet",
+            "damage": 5,
+            "fetterDuration": 300,
+            "speed": 300,
+            "range": 256,
+            "cooldown": 2000
+          }
+        },
+        {
+          "name": "rigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1.75,
+            "useGravity": false,
+            "isPermeable": false,
+            "ghost": false,
+            "drag": 0.5
+          }
+        },
+        {
+          "name": "colliderContainer",
+          "config": {
+            "type": "boxCollider",
+            "collider": {
+              "sizeX": 21,
+              "sizeY": 7,
+              "centerX": 0,
+              "centerY": 17
+            }
+          }
+        },
+        {
+          "name": "movement",
+          "config": {
+            "speed": 100
+          }
+        },
+        {
+          "name": "animatable",
+          "config": {
+            "initialState": "idle",
+            "states": [
+              {
+                "name": "idle",
+                "speed": 0.75,
+                "transitions": [
+                  {
+                    "state": "death",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "attack",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "SHOT"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.x"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.y"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ],
+                "type": "group",
+                "substates": [
+                  {
+                    "name": "idleRight",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 0,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 1,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 2,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 3,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 4,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 5,
+                          "components.renderable.flipX": false
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": 1,
+                    "y": 0
+                  },
+                  {
+                    "name": "idleLeft",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 0,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 1,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 2,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 3,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 4,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 5,
+                          "components.renderable.flipX": true
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": -1,
+                    "y": 0
+                  }
+                ],
+                "pickMode": "2D",
+                "pickProps": {
+                  "x": "components.movement.vector.x",
+                  "y": "components.movement.vector.y"
+                }
+              },
+              {
+                "name": "run",
+                "speed": 1,
+                "transitions": [
+                  {
+                    "state": "death",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "idle",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.x"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      },
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.y"
+                          },
+                          "operation": "equals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ],
+                "type": "group",
+                "substates": [
+                  {
+                    "name": "runRight",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 6,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 7,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 8,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 9,
+                          "components.renderable.flipX": false
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": 1,
+                    "y": 0
+                  },
+                  {
+                    "name": "runLeft",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 6,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 7,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 8,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 9,
+                          "components.renderable.flipX": true
+                        }
+                      ],
+                      "looped": true
+                    },
+                    "x": -1,
+                    "y": 0
+                  }
+                ],
+                "pickMode": "2D",
+                "pickProps": {
+                  "x": "components.movement.vector.x",
+                  "y": "components.movement.vector.y"
+                }
+              },
+              {
+                "name": "attack",
+                "speed": 1.5,
+                "transitions": [
+                  {
+                    "state": "death",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.x"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "run",
+                    "conditions": [
+                      {
+                        "type": "comparator",
+                        "props": {
+                          "arg1": {
+                            "type": "componentValue",
+                            "value": "components.movement.vector.y"
+                          },
+                          "operation": "notEquals",
+                          "arg2": {
+                            "type": "number",
+                            "value": 0
+                          }
+                        }
+                      }
+                    ],
+                    "time": 0
+                  },
+                  {
+                    "state": "idle",
+                    "conditions": [],
+                    "time": 1
+                  }
+                ],
+                "type": "group",
+                "substates": [
+                  {
+                    "name": "attackRight",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 10,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 11,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 12,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 13,
+                          "components.renderable.flipX": false
+                        },
+                        {
+                          "components.renderable.currentFrame": 14,
+                          "components.renderable.flipX": false
+                        }
+                      ],
+                      "looped": false
+                    },
+                    "x": 1,
+                    "y": 0
+                  },
+                  {
+                    "name": "attackLeft",
+                    "timeline": {
+                      "frames": [
+                        {
+                          "components.renderable.currentFrame": 10,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 11,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 12,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 13,
+                          "components.renderable.flipX": true
+                        },
+                        {
+                          "components.renderable.currentFrame": 14,
+                          "components.renderable.flipX": true
+                        }
+                      ],
+                      "looped": false
+                    },
+                    "x": -1,
+                    "y": 0
+                  }
+                ],
+                "pickMode": "2D",
+                "pickProps": {
+                  "x": "components.movement.vector.x",
+                  "y": "components.movement.vector.y"
+                }
+              },
+              {
+                "name": "death",
+                "type": "individual",
+                "speed": 0.5,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 15,
+                      "components.renderable.flipX": false
+                    },
+                    {
+                      "components.renderable.disabled": true
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "renderable",
+          "config": {
+            "type": "sprite",
+            "src": "resources/graphics/units/rooster_enemy.png",
+            "width": 45,
+            "height": 50,
+            "slice": 16,
+            "rotation": 0,
+            "sortCenter": [ 0, 0 ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "units",
+            "fit": "stretch",
+            "material": {
+              "type": "basic"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "blasterBullet",
+      "children": [
+        {
+          "name": "blasterBulletHitBox",
+          "children": [],
+          "components": [
+            {
+              "name": "hitBox",
+              "config": {}
+            },
+            {
+              "name": "transform",
+              "config": {
+                "offsetX": 0,
+                "offsetY": 0,
+                "offsetZ": 0,
+                "rotation": 0
+              }
+            },
+            {
+              "name": "colliderContainer",
+              "config": {
+                "type": "circleCollider",
+                "collider": {
+                  "radius": 10,
+                  "centerX": 0,
+                  "centerY": 0
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "components": [
+        {
+          "name": "transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0
+          }
+        },
+        {
+          "name": "health",
+          "config": {
+            "points": 1
+          }
+        },
+        {
+          "name": "rigidBody",
+          "config": {
+            "type": "dynamic",
+            "mass": 1,
+            "useGravity": false,
+            "isPermeable": true,
+            "ghost": false,
+            "drag": 0
+          }
+        },
+        {
+          "name": "colliderContainer",
+          "config": {
+            "type": "circleCollider",
+            "collider": {
+              "radius": 10,
+              "centerX": 0,
+              "centerY": 0
+            }
+          }
+        },
+        {
+          "name": "animatable",
+          "config": {
+            "initialState": "idle",
+            "states": [
+              {
+                "name": "idle",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 0
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": [
+                  {
+                    "state": "death",
+                    "conditions": [
+                      {
+                        "type": "message",
+                        "props": {
+                          "message": "KILL"
+                        }
+                      }
+                    ],
+                    "time": 0
+                  }
+                ]
+              },
+              {
+                "name": "death",
+                "type": "individual",
+                "speed": 1,
+                "timeline": {
+                  "frames": [
+                    {
+                      "components.renderable.currentFrame": 1
+                    },
+                    {
+                      "components.renderable.currentFrame": 2
+                    },
+                    {
+                      "components.renderable.currentFrame": 3
+                    },
+                    {
+                      "components.renderable.currentFrame": 4
+                    },
+                    {
+                      "components.renderable.currentFrame": 5
+                    },
+                    {
+                      "components.renderable.currentFrame": 6
+                    },
+                    {
+                      "components.renderable.disabled": true
+                    }
+                  ],
+                  "looped": false
+                },
+                "transitions": []
+              }
+            ]
+          }
+        },
+        {
+          "name": "renderable",
+          "config": {
+            "type": "sprite",
+            "src": "resources/graphics/items/blaster_bullet.png",
+            "width": 32,
+            "height": 32,
+            "slice": 7,
+            "rotation": 0,
+            "sortCenter": [ 0, 0 ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "units",
+            "fit": "stretch",
+            "material": {
+              "type": "basic"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "space",
+      "children": [],
+      "components": [
+        {
+          "name": "transform",
+          "config": {
+            "offsetX": 0,
+            "offsetY": 0,
+            "offsetZ": 0,
+            "rotation": 0
+          }
+        },
+        {
+          "name": "renderable",
+          "config": {
+            "type": "static",
+            "src": "resources/graphics/background/space.png",
+            "width": 1648,
+            "height": 1158,
+            "rotation": 0,
+            "sortCenter": [ 0, 0 ],
+            "flipX": false,
+            "flipY": false,
+            "sortingLayer": "background",
+            "fit": "repeat",
+            "material": {
+              "type": "basic"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "loaders": [],
+  "startScene": "mainMenu"
+}
